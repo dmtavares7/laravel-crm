@@ -15,6 +15,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        /**
+         * Railway terminates TLS at its edge, so without this every generated URL is http://.
+         */
+        $middleware->trustProxies(at: '*');
+
         $middleware->append(CanInstall::class);
 
         $middleware->encryptCookies(except: [
