@@ -1,0 +1,6 @@
+{
+  "$schema": "https://schema.railpack.com",
+  "deploy": {
+    "startCommand": "php artisan config:clear && php artisan crm:deploy-setup; exec /start-container.sh"
+  }
+}
